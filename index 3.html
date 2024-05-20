@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web-based AR Environmental Data</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+    <style>
+      body, html { margin: 0; padding: 0; overflow: hidden; }
+      #loading { position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: white; }
+    </style>
+  </head>
+  <body>
+    <div id="loading">Loading...</div>
+    <a-scene embedded arjs="sourceType: webcam;">
+      <!-- AR Marker with Environmental Data -->
+      <a-marker preset="hiro">
+        <a-box position="0 0.5 0" material="color: blue;"></a-box>
+        <a-text value="Temperature: 20°C" position="-0.5 1 0" scale="2 2 2"></a-text>
+        <a-text value="Humidity: 60%" position="-0.5 0.8 0" scale="2 2 2"></a-text>
+        <a-box position="1 0.5 0" material="color: green;"></a-box>
+        <a-text value="Air Quality: Good" position="0.5 1 0" scale="2 2 2"></a-text>
+      </a-marker>
+
+      <!-- Geolocation-based AR -->
+      <a-entity gps-entity-place="latitude: 53.229841; longitude: -4.130436;">
+        <a-box color="red" scale="2 2 2"></a-box>
+        <a-text value="Bangor University" position="0 2 0"></a-text>
+        <a-text value="Weather: Sunny" position="0 1.8 0"></a-text>
+        <a-box color="yellow" position="0 -0.5 0" height="1.5" width="0.5" depth="0.5"></a-box>
+        <a-text value="Temp: 15°C" position="0 0.8 0"></a-text>
+      </a-entity>
+    </a-scene>
+    <script>
+      window.addEventListener('load', function() {
+        document.getElementById('loading').style.display = 'none';
+      });
+    </script>
+  </body>
+</html>
+
+
